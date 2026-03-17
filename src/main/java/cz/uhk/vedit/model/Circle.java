@@ -5,25 +5,25 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class Square extends AbstractGraphicObject {
+public class Circle extends AbstractGraphicObject {
     protected int a;
 
-    public Square() {
+    public Circle() {
     }
 
-    public Square(Point point, Color color, int a) {
+    public Circle(Point point, Color color, int a) {
         super(point, color);
         this.a = a;
     }
 
-    public Square(int x, int y, Color color, int a) {
+    public Circle(int x, int y, Color color, int a) {
         super(x, y, color);
         this.a = a;
     }
 
     public void draw(Graphics2D g) {
         g.setColor(this.color);
-        g.drawRect(this.point.x, this.point.y, this.a, this.a);
+        g.drawOval(point.x, point.y, a, a);
     }
 
     public boolean contains(Point point) {
