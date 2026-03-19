@@ -23,9 +23,9 @@ public class Triangle extends AbstractGraphicObject{
 
         int pyth =(int)Math.sqrt(Math.pow(a,2)-Math.pow(a/2,2));
 
-        g.drawLine(point.x, point.y, point.x+a ,point.y);
-        g.drawLine(point.x, point.y, point.x+a/2, point.y - pyth);
-        g.drawLine(point.x+a, point.y, point.x+a-a/2, point.y - pyth);
+        g.drawLine(point.x, point.y +pyth, point.x+a ,point.y+pyth);
+        g.drawLine(point.x, point.y+pyth, point.x+a/2, point.y);
+        g.drawLine(point.x+a, point.y+pyth, point.x+a-a/2, point.y );
 
 
     }
