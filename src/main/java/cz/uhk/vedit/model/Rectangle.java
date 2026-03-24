@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class Rectangle extends AbstractGraphicObject{
     protected int a;
+    protected int b;
 
     public Rectangle(){
 
@@ -20,14 +21,16 @@ public class Rectangle extends AbstractGraphicObject{
     @Override
     public void draw(Graphics2D g) {
         g.setColor(this.color);
-        int b = a/2;
+        b = a/2;
         g.drawRect(this.point.x, this.point.y, this.a, b);
 
 
     }
 
     @Override
-    public boolean contains(Point g) {
-        return false;
+    public boolean contains(Point point) {
+
+        return (point.x >= this.point.x && point.x <= this.point.x + a) && (point.y >= this.point.y && point.y <= this.point.y + b);
+
     }
 }

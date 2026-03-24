@@ -6,7 +6,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 
 public class Square extends AbstractGraphicObject {
-    protected int a;
+    private int a;
+
+
 
     public Square() {
     }
@@ -27,6 +29,10 @@ public class Square extends AbstractGraphicObject {
     }
 
     public boolean contains(Point point) {
-        return false;
+
+        return (point.x >= this.point.x && point.x <= this.point.x + a) && (point.y >= this.point.y && point.y <= this.point.y + a);
+
     }
+
+
 }

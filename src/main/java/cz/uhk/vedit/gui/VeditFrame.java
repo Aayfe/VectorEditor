@@ -11,9 +11,7 @@ import cz.uhk.vedit.model.Square;
 import cz.uhk.vedit.model.Triangle;
 
 import java.awt.Color;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.EventListener;
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
@@ -62,6 +60,7 @@ public class VeditFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println(e.getPoint());
+
                 if(square.isSelected()){
                     drawPanel.addObject(new Square(e.getPoint(), defaultColor,defaultSize));
                 }

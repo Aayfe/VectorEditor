@@ -27,6 +27,8 @@ public class Circle extends AbstractGraphicObject {
     }
 
     public boolean contains(Point point) {
-        return false;
+
+       return Math.pow(point.x - this.point.x -a,2)+ Math.pow(point.y - this.point.y - a,2) <= a*a;
+
     }
 }
