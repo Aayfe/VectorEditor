@@ -40,6 +40,7 @@ public class VeditFrame extends JFrame {
         JToggleButton triangle=new JToggleButton("Triangle");
         JToggleButton rectangle=new JToggleButton("Rectangle");
         JToggleButton circle=new JToggleButton("Circle");
+        JToggleButton selection = new JToggleButton("Selection");
 
 
         ButtonGroup group = new ButtonGroup();
@@ -47,12 +48,14 @@ public class VeditFrame extends JFrame {
         group.add(triangle);
         group.add(rectangle);
         group.add(circle);
+        group.add(selection);
 
 
         toolBar.add(square);
         toolBar.add(triangle);
         toolBar.add(rectangle);
         toolBar.add(circle);
+        toolBar.add(selection);
 
 
 

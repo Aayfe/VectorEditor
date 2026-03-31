@@ -75,7 +75,7 @@ public class DrawPanel extends JPanel {
 
     public void paint(Graphics g) {
         super.paint(g);
-
+        ((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         for(AbstractGraphicObject obj : this.objects) {
             obj.draw((Graphics2D)g);
         }
