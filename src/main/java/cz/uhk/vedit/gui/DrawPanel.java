@@ -6,6 +6,7 @@
 package cz.uhk.vedit.gui;
 
 import cz.uhk.vedit.model.AbstractGraphicObject;
+import cz.uhk.vedit.model.ObjectGroup;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -20,7 +21,12 @@ public class DrawPanel extends JPanel {
 
     private List<AbstractGraphicObject> objects = new ArrayList();
     private AbstractGraphicObject selected;
-    private int dx, dy;
+    private Point oldMouse;
+    private boolean selection;
+
+    public void setSelection(boolean selection) {
+        this.selection = selection;
+    }
 
     public DrawPanel(List<AbstractGraphicObject> objects) {
         this.objects = objects;
@@ -28,35 +34,47 @@ public class DrawPanel extends JPanel {
     }
 
     public DrawPanel() {
+
         this.initGui();
     }
 
     private void initGui() {
         this.setBackground(Color.white);
         this.setPreferredSize(new Dimension(800, 600));
+            moveObject();
 
 
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                selected = findObjectUnderMouse(e.getPoint());
-                if (selected != null){
-                    dx = e.getX() - selected.getPoint().x;
-                    dy = e.getY() - selected.getPoint().y;
+
+    }
+
+    public void moveObject(){
+
+            addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    if (!selection) return;
+                    selected = findObjectUnderMouse(e.getPoint());
+                    if (selected != null) {
+                        oldMouse = e.getPoint();
+                    }
                 }
-            }
-        });
+            });
 
-        addMouseMotionListener(new MouseMotionAdapter() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
+            addMouseMotionListener(new MouseMotionAdapter() {
+                @Override
+                public void mouseDragged(MouseEvent e) {
+                    if (!selection) return;
+                    if (selected != null) {
+                        int dx = e.getX() - oldMouse.x;
+                        int dy = e.getY() - oldMouse.y;
+                        selected.moveBy(dx, dy);
+                        oldMouse = e.getPoint();
 
-                if (selected != null){
-                    selected.setPoint(e.getX() - dx, e.getY() - dy);
-                    repaint();
+                        repaint();
+
+                    }
                 }
-            }
-        });
+            });
 
     }
     private AbstractGraphicObject findObjectUnderMouse(Point point){
@@ -69,6 +87,8 @@ public class DrawPanel extends JPanel {
 
         return null;
     }
+
+
     public void addObject(AbstractGraphicObject obj) {
         this.objects.add(obj);
     }

@@ -5,10 +5,7 @@
 
 package cz.uhk.vedit.gui;
 
-import cz.uhk.vedit.model.Circle;
-import cz.uhk.vedit.model.Rectangle;
-import cz.uhk.vedit.model.Square;
-import cz.uhk.vedit.model.Triangle;
+import cz.uhk.vedit.model.*;
 
 import java.awt.Color;
 import java.awt.event.*;
@@ -17,10 +14,13 @@ import javax.swing.*;
 import javax.swing.event.ChangeListener;
 
 public class VeditFrame extends JFrame {
+
     private DrawPanel drawPanel = new DrawPanel();
     private JToolBar toolBar = new JToolBar();
     private int defaultSize = 50;
     private Color defaultColor = Color.BLACK;
+
+
 
 
     public VeditFrame() {
@@ -32,8 +32,15 @@ public class VeditFrame extends JFrame {
         this.add(this.drawPanel, "Center");
         this.add(this.toolBar, "North");
 
+        ObjectGroup gr = new ObjectGroup();
+        drawPanel.addObject(gr);
+        gr.addGraphicObject(new Circle(200,100, Color.black,  100));
+        gr.addGraphicObject(new Circle(250,150, Color.black,  100));
+
+
 
         this.pack();
+
     }
     private void createToolBarButtons(){
         JToggleButton square=new JToggleButton("Square");
@@ -58,6 +65,13 @@ public class VeditFrame extends JFrame {
         toolBar.add(selection);
 
 
+        selection.addActionListener((ActionEvent e) -> {
+            drawPanel.setSelection(selection.isSelected());
+        });
+        square.addActionListener(e -> drawPanel.setSelection(false));
+        triangle.addActionListener(e -> drawPanel.setSelection(false));
+        rectangle.addActionListener(e -> drawPanel.setSelection(false));
+        circle.addActionListener(e -> drawPanel.setSelection(false));
 
         drawPanel.addMouseListener(new MouseAdapter() {
             @Override
@@ -91,5 +105,8 @@ public class VeditFrame extends JFrame {
         this.drawPanel.addObject(new Circle(1, 100, Color.blue, 70));
         this.drawPanel.addObject(new Triangle(200, 200, Color.green, 700));
         this.drawPanel.addObject(new Rectangle(300, 200, Color.gray, 100));
+
+
+
     }
 }

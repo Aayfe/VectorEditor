@@ -53,4 +53,8 @@ public abstract class AbstractGraphicObject {
     public boolean contains(int x, int y) {
         return this.contains(new Point(x, y));
     }
+
+    public void moveBy (int dx, int dy){
+        point.translate(dx, dy);
+    }
 }
