@@ -53,6 +53,8 @@ public class DrawPanel extends JPanel {
                 @Override
                 public void mousePressed(MouseEvent e) {
                     if (!selection) return;
+
+
                     selected = findObjectUnderMouse(e.getPoint());
                     if (selected != null) {
                         oldMouse = e.getPoint();
@@ -64,6 +66,8 @@ public class DrawPanel extends JPanel {
                 @Override
                 public void mouseDragged(MouseEvent e) {
                     if (!selection) return;
+
+
                     if (selected != null) {
                         int dx = e.getX() - oldMouse.x;
                         int dy = e.getY() - oldMouse.y;
